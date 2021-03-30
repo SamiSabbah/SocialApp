@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "../../axios";
+import { fecthUserProfile } from "../user/userSlice";
 
 export const screamsSlice = createSlice({
   name: "screams",
@@ -78,10 +79,16 @@ export const deleteScream = ({ screamId, handleConfirmDeleteClose, token }) => (
 
 export const fetchCommentsData = ({ screamId }) => (dispatch) => {
   dispatch(setLoading(true));
-  axios.get(`screams/${screamId}`).then((res) => {
-    dispatch(setCommentsData(res.data));
-    dispatch(setLoading(false));
-  });
+  axios
+    .get(`screams/${screamId}`)
+    .then((res) => {
+      dispatch(setCommentsData(res.data));
+      dispatch(setLoading(false));
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch(setLoading(false));
+    });
 };
 
 export const postComment = ({ screamId, commentScream, token }) => (
@@ -107,18 +114,20 @@ export const postComment = ({ screamId, commentScream, token }) => (
     });
 };
 
-export const likeUnlickScream = ({ url, token, liked, setLiked }) => (
+export const likeUnlickScream = ({ url, token, liked, screamId, setLiked }) => (
   dispatch
 ) => {
   axios
-    .patch(url, {
+    .patch(url, null, {
       headers: {
         Authorization: "Bearer " + token,
       },
     })
     .then(() => {
-      liked ? setLiked(false) : setLiked(true);
       dispatch(fecthScreams());
+      dispatch(fetchCommentsData({ screamId }));
+      dispatch(fecthUserProfile(token));
+      liked ? setLiked(false) : setLiked(true);
     })
     .catch((err) => {
       console.log(err);

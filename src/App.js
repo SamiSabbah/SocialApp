@@ -53,8 +53,6 @@ function App() {
     </Switch>
   );
 
-  console.log(token);
-
   if (token !== null) {
     routes = (
       <Switch>

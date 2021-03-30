@@ -16,6 +16,7 @@ const LikeComment = ({ likeCount, commentCount, screamId, token }) => {
   const history = useHistory();
 
   useEffect(() => {
+    setLiked(false);
     // eslint-disable-next-line array-callback-return
     userLikes.map((postLiked) => {
       if (screamId === postLiked.screamId) {
@@ -28,12 +29,12 @@ const LikeComment = ({ likeCount, commentCount, screamId, token }) => {
     if (!token) {
       history.push("/login");
     }
-    let url = `screams/${screamId}/like`;
+    let url = `/screams/${screamId}/like`;
 
     if (liked) {
-      url = `screams/${screamId}/unlike`;
+      url = `/screams/${screamId}/unlike`;
     }
-    dispatch(likeUnlickScream({ url, token, liked, setLiked }));
+    dispatch(likeUnlickScream({ url, token, liked, screamId, setLiked }));
   };
 
   return (

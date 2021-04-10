@@ -51,6 +51,7 @@ const CommentPaper = ({ handleClose, openComment, screamId, token }) => {
   const [commentScream, setCommentScream] = useState("");
   const isAuth = useSelector(selectAuth);
 
+  // post comment
   const handelCommentScream = () => {
     dispatch(postComment({ screamId, commentScream, token }));
     setCommentScream("");

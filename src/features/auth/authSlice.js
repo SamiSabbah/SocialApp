@@ -17,6 +17,7 @@ export const authSlice = createSlice({
 
 export const { setToken } = authSlice.actions;
 
+// logout requset
 export const logout = () => (dispatch) => {
   dispatch(setToken(null));
   dispatch(setCredentials({}));
@@ -26,6 +27,7 @@ export const logout = () => (dispatch) => {
   dispatch(fecthScreams());
 };
 
+// login requset
 export const login = ({ values, setChecking, setAlertMessage, history }) => (
   dispatch
 ) => {
@@ -48,6 +50,7 @@ export const login = ({ values, setChecking, setAlertMessage, history }) => (
     });
 };
 
+// signup requset
 export const signup = ({ values, setChecking, setAlertMessage, history }) => (
   dispatch
 ) => {

@@ -43,28 +43,34 @@ const ScreamCard = ({
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [openComment, setOpenComment] = useState(false);
 
+  // open the comment dialog
   const handleClickOpen = () => {
     setOpenComment(true);
     dispatch(fetchCommentsData({ screamId }));
   };
 
+  // close the comment dialog
   const handleClose = () => {
     dispatch(fecthScreams());
     setOpenComment(false);
   };
 
+  // open the delete alert
   const handleClickConfirmDelete = () => {
     setConfirmDelete(true);
   };
 
+  // cancle scream delete
   const handleConfirmDeleteClose = () => {
     setConfirmDelete(false);
   };
 
+  // confirm scream delete
   const handelDeleteScream = () => {
     dispatch(deleteScream({ screamId, handleConfirmDeleteClose, token }));
   };
 
+  // comment dialog
   const commentPaper = (
     <CommentPaper
       handleClickOpen={handleClickOpen}
@@ -76,6 +82,7 @@ const ScreamCard = ({
     />
   );
 
+  // delete alret
   const deleteConfirmAlret = (
     <Dialog
       open={confirmDelete}

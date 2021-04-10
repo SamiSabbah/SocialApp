@@ -24,6 +24,7 @@ export const screamsSlice = createSlice({
 
 export const { setScreams, setCommentsData, setLoading } = screamsSlice.actions;
 
+// fetch whole scerams
 export const fecthScreams = () => (dispatch) => {
   axios
     .get("/screams")
@@ -35,6 +36,7 @@ export const fecthScreams = () => (dispatch) => {
     });
 };
 
+// post scream
 export const postScream = ({ handleClose, scream, token }) => (dispatch) => {
   axios
     .post(
@@ -58,6 +60,7 @@ export const postScream = ({ handleClose, scream, token }) => (dispatch) => {
     });
 };
 
+// delete scream
 export const deleteScream = ({ screamId, handleConfirmDeleteClose, token }) => (
   dispatch
 ) => {
@@ -77,6 +80,7 @@ export const deleteScream = ({ screamId, handleConfirmDeleteClose, token }) => (
     });
 };
 
+// fetch comments data for spasifc scream
 export const fetchCommentsData = ({ screamId }) => (dispatch) => {
   dispatch(setLoading(true));
   axios
@@ -91,6 +95,7 @@ export const fetchCommentsData = ({ screamId }) => (dispatch) => {
     });
 };
 
+// post comment in scream
 export const postComment = ({ screamId, commentScream, token }) => (
   dispatch
 ) => {
@@ -114,6 +119,7 @@ export const postComment = ({ screamId, commentScream, token }) => (
     });
 };
 
+// like and unlick scream
 export const likeUnlickScream = ({ url, token, liked, screamId, setLiked }) => (
   dispatch
 ) => {

@@ -47,6 +47,7 @@ const HomePage = () => {
     </Paper>
   );
 
+  // check if he is loged in
   if (token) {
     profile = (
       <Paper className={classes.profile}>

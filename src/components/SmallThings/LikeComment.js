@@ -15,6 +15,7 @@ const LikeComment = ({ likeCount, commentCount, screamId, token }) => {
   const userLikes = useSelector(selectUserLikes);
   const history = useHistory();
 
+  // check for liked scream
   useEffect(() => {
     setLiked(false);
     // eslint-disable-next-line array-callback-return
@@ -25,6 +26,7 @@ const LikeComment = ({ likeCount, commentCount, screamId, token }) => {
     });
   }, [screamId, userLikes]);
 
+  // handel the like scream button
   const handelLikeScream = () => {
     if (!token) {
       history.push("/login");
